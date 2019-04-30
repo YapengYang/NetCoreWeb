@@ -1,8 +1,8 @@
 # NetCoreWeb
 DDD + .NETCORE + VUE 前后端分离领域驱动设计实践
 
-项目目录：
-后端：
+项目目录：\n
+后端：\n
     0-Document     包含文件、文档信息
     1-Infrastructure     基础设施 
         1.1 H.SPS.Common     
