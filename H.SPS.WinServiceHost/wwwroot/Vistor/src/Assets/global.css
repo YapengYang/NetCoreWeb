@@ -1,0 +1,36 @@
+.test
+{
+    border:1px solid red;
+}
+.vLayout
+{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+}
+.v1
+{
+    flex:1 1 auto;
+    height: 1px;
+}
+.v0
+{
+    flex:0 0 auto;
+}
+.hLayout
+{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: center;
+}
+.h1
+{
+    flex:1 1 auto;
+    width: 1px;
+}
+.h0
+{
+    flex:0 0 auto;
+}

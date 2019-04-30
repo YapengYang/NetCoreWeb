@@ -1,0 +1,33 @@
+{
+    "include": [
+    "src/**/*"
+    ],
+    "exclude": [
+    "node_modules"
+    ],
+
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "Biz/*": [ "Biz/*" ],
+            "Components/*": [ "Components/*" ],
+            "Assets/*": [ "Assets/*" ],
+        },
+        
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "module": "CommonJS",
+        "target": "es2018",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "lib": [
+        "dom",
+        "es2018",
+        "es2015.promise"
+        ],
+        "sourceMap": true,
+        "pretty": true
+    }
+   }
+   
