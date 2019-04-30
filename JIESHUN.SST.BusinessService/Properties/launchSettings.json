@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "H.SPS.BusinessService": {
+      "commandName": "Project",
+      "commandLineArgs": "dotnet.exe H.SPS.WinServiceHost.dll serviceurl:http://0.0.0.0:8081 servicePath:H.SPS.BusinessService.dll action:install"
+    }
+  }
+}
