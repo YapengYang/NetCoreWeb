@@ -3,7 +3,7 @@
 
         <el-card class="box-card" style="width:400px;height:250px; ">
             <div slot="header" class="clearfix">
-                <span>访客系统</span>
+                <span>后台系统</span>
             </div>
             <div>
                 <el-form   label-width="100px">
@@ -36,8 +36,9 @@ export default class Login extends Vue {
     created(){
         this.loadCookie();
     }
-    login(){
+    login(){    
         Env.BizVistor.queryVistorOperator(this.loginModel).then(r=>{
+            this.$emit("navigate","Main");
             if(r.returnCode==0){
                 if(this.rememberPwd){
                     this.setCookie(this.loginModel.no,this.loginModel.pwd,"1");

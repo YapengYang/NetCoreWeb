@@ -4,7 +4,9 @@ using System.Text;
 
 namespace H.SPS.Common
 {
-    public interface IPrinter: IDevice
+    public interface IServiceRegister
     {
+        //object Execute(object input);
+        List<Type> GetAll();
     }
 }

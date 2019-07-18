@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using Newtonsoft.Json;
-namespace H.SPS.BusinessService
+namespace H.SPS.CommonService
 {
     /// <summary>
     /// 
@@ -56,7 +56,7 @@ namespace H.SPS.BusinessService
             //    typeof(VistorService)
             //};
             //}
-            services.AddSingleton<IControllerRegister>(new VistorRegister());
+            services.AddSingleton<IServiceRegister>(new CommonRegister());
         }
 
         /// <summary>

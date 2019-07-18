@@ -22,7 +22,7 @@ namespace H.SPS.WinServiceHost
         /// <param name="application"></param>
         public void Apply(ApplicationModel application)
         {
-            var controllerRegister = Env.Instance.ApplicationServices.GetService<IControllerRegister>();
+            var controllerRegister = Env.Instance.ApplicationServices.GetService<IServiceRegister>();
             if (controllerRegister == null) return;
             var controllers = controllerRegister.GetAll();
             foreach (var controller in controllers)

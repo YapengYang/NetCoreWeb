@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace H.SPS.BusinessService
+namespace H.SPS.CommonService
 {
-    public class VistorRegister : IControllerRegister
+    /// <summary>
+    /// 公共服务注册类
+    /// </summary>
+    public class CommonRegister : IServiceRegister
     {
         /// <summary>
         /// 
@@ -15,7 +18,7 @@ namespace H.SPS.BusinessService
         {
             return new List<Type>()
             {
-                typeof(VistorService)
+                typeof(CommonService)
             };
         }
     }
