@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using H.SPS.Common;
 using NLog.Web;
-using PeterKottas.DotNetCore.WindowsService;
 
 namespace H.SPS.WinServiceHost
 {
@@ -21,6 +20,7 @@ namespace H.SPS.WinServiceHost
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            
             var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             logger.Info("\r\n------------------------软件启动-------------------");
             string url = args.FirstOrDefault(x => x.ToLower().StartsWith("serviceurl:"));
@@ -58,37 +58,37 @@ namespace H.SPS.WinServiceHost
                 return;
             }
             Startup.DllFullPath = fullPath;
-            ServiceRunner<AspNetCoreService>.Run(config =>
-            {
-                var name = config.GetDefaultName();
-                config.Service(serviceConfig =>
-                {
-                    serviceConfig.ServiceFactory((extraArguments, controller) =>
-                    {
-                        return new AspNetCoreService(url, bizService);
-                    });
-                    serviceConfig.OnStart((service, extraArguments) =>
-                    {
-                        logger.Info("Service {0} started", name);
-                        service.Start();
-                    });
+            //ServiceRunner<AspNetCoreService>.Run(config =>
+            //{
+            //    var name = config.GetDefaultName();
+            //    config.Service(serviceConfig =>
+            //    {
+            //        serviceConfig.ServiceFactory((extraArguments, controller) =>
+            //        {
+            //            return new AspNetCoreService(url, bizService);
+            //        });
+            //        serviceConfig.OnStart((service, extraArguments) =>
+            //        {
+            //            logger.Info("Service {0} started", name);
+            //            service.Start();
+            //        });
 
-                    serviceConfig.OnStop(service =>
-                    {
-                        logger.Info("Service {0} stopped", name);
-                        service.Stop();
-                    });
+            //        serviceConfig.OnStop(service =>
+            //        {
+            //            logger.Info("Service {0} stopped", name);
+            //            service.Stop();
+            //        });
 
-                    serviceConfig.OnError(e =>
-                    {
-                        logger.Error("Service {0} errored with exception : {1}", name, e.Message);
-                    });
-                });
+            //        serviceConfig.OnError(e =>
+            //        {
+            //            logger.Error("Service {0} errored with exception : {1}", name, e.Message);
+            //        });
+            //    });
 
-                config.SetName(bizService.GetName());
-                config.SetDescription(bizService.GetDescription());
-                config.SetDisplayName(bizService.GetDisplayName());
-            });
+            //    config.SetName(bizService.GetName());
+            //    config.SetDescription(bizService.GetDescription());
+            //    config.SetDisplayName(bizService.GetDisplayName());
+            //});
         }
     }
 }

@@ -30,30 +30,28 @@ import * as API from 'Biz/ApiProxy/index'
 import {Env} from 'Biz/Env'
 @Component
 export default class Login extends Vue {
-    backgroundImage:string=require("Assets/login_bgd.png")
+    backgroundImage:string=require("Assets/login_bg.jpg")
     loginModel:API.QueryVistorOperatorReq={};
     rememberPwd:boolean=false;
     created(){
         this.loadCookie();
     }
     login(){    
-        Env.BizVistor.queryVistorOperator(this.loginModel).then(r=>{
-            this.$emit("navigate","Main");
-            if(r.returnCode==0){
-                if(this.rememberPwd){
-                    this.setCookie(this.loginModel.no,this.loginModel.pwd,"1");
-                }else{
-                    this.clearCookie();
-                }
-                this.$emit("navigate","Main");
-            }else{
-                this.$notify.error({title:"",message:"用户名或密码错误"});
-            }
-        }).catch(e=>{
-            this.$notify.error({title:"",message:"服务不在线"});
-        });
-        //if ok
-        
+        // Env.BizVistor.queryVistorOperator(this.loginModel).then(r=>{
+        //     this.$emit("navigate","Main");
+        //     if(r.returnCode==0){
+        //         if(this.rememberPwd){
+        //             this.setCookie(this.loginModel.no,this.loginModel.pwd,"1");
+        //         }else{
+        //             this.clearCookie();
+        //         }
+                 this.$emit("navigate","Main");
+        //     }else{
+        //         this.$notify.error({title:"",message:"用户名或密码错误"});
+        //     }
+        // }).catch(e=>{
+        //     this.$notify.error({title:"",message:"服务不在线"});
+        // });  
     }
     setCookie(c_name, c_pwd,remember) {
         window.document.cookie = "sst_userName=" + c_name + ";path=/;expires=2030-12-31";

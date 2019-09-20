@@ -14,7 +14,7 @@ import Component from 'vue-class-component'
 @Component
 export default class Main extends Vue {
     bannerImage:string=require("Assets/home_banner.jpg");
-    contentImage:string=require("Assets/bg3.jpg");
+    contentImage:string=require("Assets/login_bg.jpg");
     currentView:string='Home';
     navigate(view:string){
         this.currentView=view;

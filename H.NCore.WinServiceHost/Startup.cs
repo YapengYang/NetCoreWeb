@@ -1,61 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using H.SPS.Common;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using System.Reflection;
-using static System.Environment;
-using ServiceStack.OrmLite;
-using Newtonsoft.Json;
 
-namespace H.SPS.WinServiceHost
+namespace H.NCore.WinServiceHost
 {
     public class Startup
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static string DllFullPath = "";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="configuration"></param>
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IConfiguration Configuration { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             string root = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
             //TContent AppDbContext = new TContent();
             services.AddDirectoryBrowser();
-            services.AddMvc()  
-            //services.AddMvc(o => o.Conventions.Add(new ExternalApiControllerConvention()))
+            services.AddMvc()
+                //services.AddMvc(o => o.Conventions.Add(new ExternalApiControllerConvention()))
                 .AddJsonOptions(o =>
                 {
                     o.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
                     //o.SerializerSettings.TypeNameHandling = TypeNameHandling.All;
-                });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddRouting();
             //services.AddDbContext<AppDbContext>();
@@ -95,21 +62,24 @@ namespace H.SPS.WinServiceHost
                     c.IncludeXmlComments(xml);
                 }
             });
+            
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="app"></param>
-        /// <param name="env"></param>
-        /// <param name="loggerFactory"></param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
+
+            app.UseStaticFiles();
+            app.UseMvc();
+
             app.UseStaticFiles();
 
             //需要在当前目录建一个wwwroot文件夹
@@ -144,14 +114,12 @@ namespace H.SPS.WinServiceHost
             });
 
             //初始化环境
-            Env.Instance = new Env();
-            Env.Instance.ApplicationServices = app.ApplicationServices;
-            Env.Instance.LoggerFactory = loggerFactory;
+            //Env.Instance = new Env();
+            //Env.Instance.ApplicationServices = app.ApplicationServices;
+            //Env.Instance.LoggerFactory = loggerFactory;
 
             //WebsocketEventDispatcher.Instance = new WebsocketEventDispatcher();
             //WebsocketEventDispatcher.Instance.Init();
         }
-
-
     }
 }

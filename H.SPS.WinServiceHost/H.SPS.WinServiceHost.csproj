@@ -37,7 +37,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,16 +46,21 @@
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="2.5.0" />
     <PackageReference Include="DotNetCore.CAP.SqlServer" Version="2.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.2.0" />
     <PackageReference Include="NLog" Version="4.6.2" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.1" />
-    <PackageReference Include="PeterKottas.DotNetCore.WindowsService" Version="2.0.11" />
     <PackageReference Include="ServiceStack.OrmLite.Core" Version="5.5.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
+    <PackageReference Include="StackExchange.Redis.Extender" Version="1.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\H.SPS.Common\H.SPS.Common.csproj" />
+    <ProjectReference Include="..\H.SPS.WebAPI\H.NCore.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

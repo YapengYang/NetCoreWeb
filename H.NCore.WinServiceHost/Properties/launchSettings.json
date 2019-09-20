@@ -18,7 +18,7 @@
     },
     "AspNetCoreWinService": {
       "commandName": "Project",
-      "commandLineArgs": "serviceurl:http://localhost:8081 servicePath:H.SPS.WebAPI.dll",
+      "commandLineArgs": "serviceurl:http://localhost:8081 servicePath:H.NCore.AppService.dll",
       "launchUrl": "test",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

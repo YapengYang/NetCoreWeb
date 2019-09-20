@@ -8,23 +8,20 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using NLog.Web;
 using System.Reflection;
-using H.SPS.Common;
 using System.Threading;
-using NLog;
+using NLog.Web;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
-using Microsoft.Extensions.Logging.EventLog;
+using H.NCore.AppService;
 
-namespace H.SPS.WinServiceHost
+namespace H.NCore.WinServiceHost
 {
-    public class AspNetCoreService 
+    public class AppBaseService 
     {
         string _Url = "";
-        IService _Service;
+        IAppService _Service;
         IWebHost _Host;
-        Logger _Logger = null;
-        public AspNetCoreService(string url, IService service)
+        public AppBaseService(string url, IAppService service)
         {
             _Url = url;
             _Service = service;
@@ -35,10 +32,9 @@ namespace H.SPS.WinServiceHost
         /// </summary>
         public void Start()
         {
-            _Logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
-                _Logger.Info("ASP.NET CORE框架正在启动 ...CPU" + (IntPtr.Size == 4 ? "32位" : "64位"));
+
                 string root = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
                 _Host = WebHost.CreateDefaultBuilder()
                     .UseUrls(_Url)
@@ -56,14 +52,14 @@ namespace H.SPS.WinServiceHost
                     })
                     .Build();
                 _Service.Start();
-                _Logger.Info("ASP.NET CORE Run ...");
+   
                 _Host.RunAsync();
 
             }
             catch (Exception ex)
             {
                 //NLog: catch setup errors
-                _Logger.Error(ex, "Stopped program because of exception");
+
             }
             finally
             {
@@ -77,7 +73,6 @@ namespace H.SPS.WinServiceHost
         /// </summary>
         public void Stop()
         {
-            _Logger.Info("Service stopping ...");
             try
             {
                 if (_Host != null)
@@ -90,9 +85,8 @@ namespace H.SPS.WinServiceHost
             }
             catch (Exception ex)
             {
-                _Logger.Error(ex.ToString());
+
             }
-            LogManager.Shutdown();
         }
 
         void run()

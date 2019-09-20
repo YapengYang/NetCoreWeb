@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Compile Remove="Model\Setting.cs" />
+    <Compile Remove="Model\SystemInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
