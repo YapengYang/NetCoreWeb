@@ -45,7 +45,7 @@
     <PackageReference Include="DotNetCore.CAP.MySql" Version="2.5.0" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="2.5.0" />
     <PackageReference Include="DotNetCore.CAP.SqlServer" Version="2.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.2.0" />
